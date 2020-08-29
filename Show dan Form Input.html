@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <title>Input atau Tambah Nama</title>
+</head>
+
+<body>
+
+
+  <div class="container">
+    <div class="row" style="padding-top: 20px">
+      <div class="col-md-6" id="form-input">
+        <div class="card">
+          <div class="card-header">
+            Tambah Nama
+          </div>
+          <div class="card-boy">
+            <div class="form-group">
+              <label for="">Nama Lengkap :</label>
+              <input type="text" v-model="nama" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="">No Telepon</label>
+              <input type="text" v-model="no_telp" class="form-control">
+            </div>
+            <button @click="simpan" class="btn btn-warning btn-sm">Tambah</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6" id="show-input">
+        <div class="card">
+          <div class="card-header">
+            Data Input
+          </div>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <td>#</td>
+                <td>Nama Lengkap</td>
+                <td>No Telepon</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(row, index) in biodata">
+                <td>{{index + 1}}</td>
+                <td>{{row.nama}}</td>
+                <td>{{row.no_telp}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script>
+
+    var form = new Vue({
+      el: '#form-input',
+      data: {
+        nama: '',
+        no_telp: ''
+      },
+      methods: {
+        simpan() {
+          show.biodata.push({ nama: this.nama, no_telp: this.no_telp })
+
+
+          this.nama = ''
+          this.no_telp = ''
+        },
+        hapus(b) {
+
+        }
+      }
+    })
+
+    var show = new Vue({
+      el: '#show-input',
+      data: {
+        biodata: [
+          { nama: 'adi bagas pratama', no_telp: '089524559362' }
+        ]
+      }
+    })
+
+
+  </script>
+
+
+</body>
+
+</html>
